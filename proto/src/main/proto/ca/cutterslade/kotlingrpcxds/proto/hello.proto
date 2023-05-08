@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "ca.cutterslade.kotlingrpcxds.hello";
+option java_outer_classname = "HelloProto";
+
+package ca.cutterslade.kotlingrpcxds.hello;
+
+service Greeter {
+  rpc SayHello (HelloRequest) returns (HelloReply);
+}
+
+message HelloRequest {
+  string name = 1;
+}
+
+message HelloReply {
+  string message = 1;
+  string host = 2;
+}
