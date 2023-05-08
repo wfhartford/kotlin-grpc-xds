@@ -17,20 +17,24 @@ subprojects {
   if (name in setOf("client", "server")) {
     val kustomizeImageTask = tasks.register("kustomizeImage") {
       dependsOn("jib")
-      inputs.properties("image.name.prefix" to properties["image.name.prefix"])
-      inputs.file("${project.buildDir}/jib-image.digest")
-      outputs.file("${project.buildDir}/kustomize/kustomization.yaml")
+      val prefixKey = "image.name.prefix"
+      val prefix = project.provider { properties["image.name.prefix"] }
+      inputs.properties(prefixKey to prefix)
+      val digestFile = "${project.buildDir}/jib-image.digest"
+      inputs.file(digestFile)
+      val outputFile = "${project.buildDir}/kustomize/kustomization.yaml"
+      outputs.file(outputFile)
       doLast {
         val digest = file("${project.buildDir}/jib-image.digest").readText()
         val content = """
         |resources:
         |  - ../../src/main/k8s
         |images:
-        |  - name: ${project.name}
-        |    newName: ${properties["image.name.prefix"]}${project.name}
+        |  - name: quay.io/wfhartford/kotlin-grpc-xds/${project.name}
+        |    newName: ${prefix.get()}${project.name}
         |    digest: $digest
       """.trimMargin()
-        file("${project.buildDir}/kustomize/kustomization.yaml").writeText(content)
+        file(outputFile).writeText(content)
       }
     }
 

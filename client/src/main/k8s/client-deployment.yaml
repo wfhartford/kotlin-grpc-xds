@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: client
-          image: client:latest
+          image: quay.io/wfhartford/kotlin-grpc-xds/client:latest
           env:
             - name: TARGET_URL
               value: xds:///server:8443
