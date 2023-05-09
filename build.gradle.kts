@@ -28,7 +28,7 @@ subprojects {
         val digest = file("${project.buildDir}/jib-image.digest").readText()
         val content = """
         |resources:
-        |  - ../../src/main/k8s
+        |  - ../../../manifests/${project.name}
         |images:
         |  - name: quay.io/wfhartford/kotlin-grpc-xds/${project.name}
         |    newName: ${prefix.get()}${project.name}

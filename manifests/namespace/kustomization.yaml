@@ -4,6 +4,4 @@ kind: Kustomization
 namespace: kotlin-grpc-xds
 
 resources:
-  - manifests/namespace.yaml
-  - client/build/kustomize/
-  - server/build/kustomize/
+  - namespace.yaml
