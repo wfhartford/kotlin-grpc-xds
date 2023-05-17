@@ -5,6 +5,8 @@
     </encoder>
   </appender>
 
+  <logger name="ca.cutterslade.kotlingrpcxds" level="debug"/>
+
   <root level="info">
     <appender-ref ref="STDOUT"/>
   </root>

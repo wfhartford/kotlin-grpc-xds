@@ -4,16 +4,34 @@ metadata:
   name: client
   labels:
     app: client
+    version: "0.0.1"
+    app.kubernetes.io/name: client
+    app.kubernetes.io/instance: client-1
+    app.kubernetes.io/version: "0.0.1"
+    app.kubernetes.io/component: client
+    app.kubernetes.io/part-of: kotlin-grpc-xds
 spec:
   replicas: 2
   selector:
     matchLabels:
       app: client
+      version: "0.0.1"
+      app.kubernetes.io/name: client
+      app.kubernetes.io/instance: client-1
+      app.kubernetes.io/version: "0.0.1"
+      app.kubernetes.io/component: client
+      app.kubernetes.io/part-of: kotlin-grpc-xds
   template:
     metadata:
       name: client
       labels:
         app: client
+        version: "0.0.1"
+        app.kubernetes.io/name: client
+        app.kubernetes.io/instance: client-1
+        app.kubernetes.io/version: "0.0.1"
+        app.kubernetes.io/component: client
+        app.kubernetes.io/part-of: kotlin-grpc-xds
       annotations:
         inject.istio.io/templates: grpc-agent
     spec:

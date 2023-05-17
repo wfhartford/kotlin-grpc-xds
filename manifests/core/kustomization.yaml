@@ -5,3 +5,4 @@ namespace: kotlin-grpc-xds
 
 resources:
   - namespace.yaml
+  - peerauthentication.yaml

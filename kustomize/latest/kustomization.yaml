@@ -4,6 +4,6 @@ kind: Kustomization
 namespace: kotlin-grpc-xds
 
 resources:
-  - ../../manifests/namespace
+  - ../../manifests/core
   - ../../manifests/client
   - ../../manifests/server

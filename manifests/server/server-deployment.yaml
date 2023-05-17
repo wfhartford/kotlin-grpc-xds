@@ -4,16 +4,34 @@ metadata:
   name: server
   labels:
     app: server
+    version: "0.0.1"
+    app.kubernetes.io/name: server
+    app.kubernetes.io/instance: server-1
+    app.kubernetes.io/version: "0.0.1"
+    app.kubernetes.io/component: server
+    app.kubernetes.io/part-of: kotlin-grpc-xds
 spec:
   replicas: 5
   selector:
     matchLabels:
       app: server
+      version: "0.0.1"
+      app.kubernetes.io/name: server
+      app.kubernetes.io/instance: server-1
+      app.kubernetes.io/version: "0.0.1"
+      app.kubernetes.io/component: server
+      app.kubernetes.io/part-of: kotlin-grpc-xds
   template:
     metadata:
       name: server
       labels:
         app: server
+        version: "0.0.1"
+        app.kubernetes.io/name: server
+        app.kubernetes.io/instance: server-1
+        app.kubernetes.io/version: "0.0.1"
+        app.kubernetes.io/component: server
+        app.kubernetes.io/part-of: kotlin-grpc-xds
       annotations:
         inject.istio.io/templates: grpc-agent
         proxy.istio.io/config: '{"holdApplicationUntilProxyStarts": true}'

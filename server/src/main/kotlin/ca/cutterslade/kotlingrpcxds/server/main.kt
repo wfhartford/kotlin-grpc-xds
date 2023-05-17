@@ -1,10 +1,9 @@
-package ca.cutterslade.kotlingrpcxds.client
+package ca.cutterslade.kotlingrpcxds.server
 
 import io.github.oshai.KotlinLogging
 import io.grpc.InsecureServerCredentials
 import io.grpc.Server
 import io.grpc.ServerBuilder
-import io.grpc.ServerCredentials
 import io.grpc.protobuf.services.HealthStatusManager
 import io.grpc.protobuf.services.ProtoReflectionService
 import io.grpc.xds.XdsServerBuilder
@@ -47,5 +46,6 @@ private fun getGreeterServer(): Server =
     .addService(GreeterServer())
     .addService(ProtoReflectionService.newInstance())
     .addService(health.healthService)
+    .intercept(LoggingInterceptor)
     .build()
     .start()
