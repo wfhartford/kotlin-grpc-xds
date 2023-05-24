@@ -1,4 +1,4 @@
-package ca.cutterslade.kotlingrpcxds.server
+package ca.cutterslade.kotlingrpcxds.client
 
 import ca.cutterslade.kotlingrpcxds.hello.GreeterGrpcKt
 import ca.cutterslade.kotlingrpcxds.hello.helloRequest
