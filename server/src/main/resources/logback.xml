@@ -6,6 +6,7 @@
   </appender>
 
   <logger name="ca.cutterslade.kotlingrpcxds" level="debug"/>
+  <logger name="io.grpc.xds" level="debug"/>
 
   <root level="info">
     <appender-ref ref="STDOUT"/>

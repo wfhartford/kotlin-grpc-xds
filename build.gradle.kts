@@ -1,3 +1,5 @@
+import ca.cutterslade.kotlingrpcxds.gradle.Versions
+
 plugins {
   kotlin("jvm") version "1.8.21"
   id("idea")
@@ -42,6 +44,13 @@ subprojects {
       dependsOn("build")
       dependsOn("jib")
       dependsOn(kustomizeImageTask)
+    }
+
+    configurations.all {
+      resolutionStrategy.eachDependency {
+        if (requested.group == "commons-logging" && requested.name == "commons-logging")
+          useTarget("org.slf4j:jcl-over-slf4j:${Versions.slf4j}")
+      }
     }
   }
 }
