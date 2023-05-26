@@ -1,4 +1,7 @@
 <configuration>
+  <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
+    <resetJUL>true</resetJUL>
+  </contextListener>
   <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
     <encoder>
       <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
@@ -6,7 +9,7 @@
   </appender>
 
   <logger name="ca.cutterslade.kotlingrpcxds" level="debug"/>
-  <logger name="io.grpc.xds" level="debug"/>
+  <logger name="io.grpc.xds" level="trace"/>
 
   <root level="info">
     <appender-ref ref="STDOUT"/>

@@ -14,11 +14,14 @@ import kotlin.time.Duration
 
 private val logger = KotlinLogging.logger {}
 private val health = HealthStatusManager()
+private fun initJavaLogging() {
+  SLF4JBridgeHandler.removeHandlersForRootLogger()
+  SLF4JBridgeHandler.install()
+}
 
 suspend fun main() {
   try {
-    SLF4JBridgeHandler.removeHandlersForRootLogger()
-    SLF4JBridgeHandler.install()
+    initJavaLogging()
 
     val healthServer = startHealthServer()
 
@@ -42,7 +45,10 @@ private fun startHealthServer(): Server =
     .start()
 
 private fun getGreeterServer(): Server =
-  XdsServerBuilder.forPort(8443, XdsServerCredentials.create(InsecureServerCredentials.create()))
+  XdsServerBuilder.forPort(
+    8443,
+    XdsServerCredentials.create(InsecureServerCredentials.create())
+  )
     .addService(GreeterServer())
     .addService(ProtoReflectionService.newInstance())
     .addService(health.healthService)

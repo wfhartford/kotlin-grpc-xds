@@ -18,12 +18,19 @@ import kotlin.time.Duration.Companion.milliseconds
 private val hostName: String = InetAddress.getLocalHost().hostName
 private val targetUrl: String = System.getenv("TARGET_URL") ?: "xds:///localhost:8443"
 private val logger = KotlinLogging.logger {}
-suspend fun main() {
+private fun initJavaLogging() {
   SLF4JBridgeHandler.removeHandlersForRootLogger()
   SLF4JBridgeHandler.install()
+}
 
-  val channel =
-    Grpc.newChannelBuilder(targetUrl, XdsChannelCredentials.create(InsecureChannelCredentials.create())).build()
+suspend fun main() {
+  initJavaLogging()
+  val channel = Grpc.newChannelBuilder(
+    targetUrl,
+    XdsChannelCredentials.create(
+      InsecureChannelCredentials.create()
+    )
+  ).build()
 
   val stub = GreeterGrpcKt.GreeterCoroutineStub(channel)
 
@@ -50,7 +57,7 @@ suspend fun main() {
       logger.info {
         buildString {
           append("Received count per host:\n")
-          it.forEach {(host, count) ->
+          it.forEach { (host, count) ->
             append("  $host: $count\n")
           }
         }
